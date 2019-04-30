@@ -21,6 +21,7 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
     </table>
     <input type="submit">
 </form>
+<!-- TODO: remove this message once the system is working completely -->
 Note: signing in is not completed yet. It will determine if your credentials match a valid account but that is it.<br><br>
 <?php
 if (!empty($_POST)) {
@@ -36,6 +37,7 @@ if (!empty($_POST)) {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // sql query to check if user exists in database
     $sql = "SELECT CUSTOMER_NUM FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['name']))
         . "' AND UPPER(STREET) = '" . trim(strtoupper($_POST['street'])) . "'";
 
