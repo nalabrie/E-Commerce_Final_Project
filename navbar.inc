@@ -29,6 +29,7 @@
     <li><a href="./categories.php">Categories</a></li>
     <li><a href="./cart.php">Cart</a></li>
     <li><a href="./account.php">Account</a></li>
+    <li><a href="./logout.php">Log out</a></li>
 </ul>
 </body>
 </html>
