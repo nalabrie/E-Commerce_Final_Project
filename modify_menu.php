@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Modify Menu - Assignment 10 - Nicky Labrie</title>
+    <title>Modify Menu - Final Project - Nicky Labrie</title>
 </head>
 <body>
 This is the page for modifying the menu. Submit the form below and then view the menu <a href="./menu.php">here</a> to see the changes.<br><br>

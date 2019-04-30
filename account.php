@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Account - Assignment 10 - Nicky Labrie</title>
+    <title>Account - Final Project - Nicky Labrie</title>
 </head>
 <body>
 <?php include("./navbar.inc") ?>

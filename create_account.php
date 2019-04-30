@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Account - Assignment 10 - Nicky Labrie</title>
+    <title>Create Account - Final Project - Nicky Labrie</title>
 </head>
 <body>
 Already have an account? Go <a href="./account.php">back</a>.<br><br>

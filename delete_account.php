@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete Account - Assignment 10 - Nicky Labrie</title>
+    <title>Delete Account - Final Project - Nicky Labrie</title>
 </head>
 <body>
 This is the page for deleting an account and all related orders. Already have an account and want to sign in? Go <a
