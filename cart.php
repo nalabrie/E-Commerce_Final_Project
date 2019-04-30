@@ -7,5 +7,6 @@
 <body>
 <?php include("./navbar.inc") ?>
 There is nothing to be displayed here until the menu and sign-in is fully functional.
+<!-- TODO: this entire feature -->
 </body>
 </html>

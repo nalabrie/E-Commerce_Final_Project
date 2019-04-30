@@ -21,6 +21,8 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM ITEM";
 $result = $conn->query($sql);
 
+// TODO: be able to add items to cart shown in menu
+
 if ($result->num_rows > 0) {
     echo "<table border='1px solid black'><tr><th>Item Number</th><th>Description</th><th>On Hand</th><th>Category</th><th>Price</th></tr>";
     // output data of each row

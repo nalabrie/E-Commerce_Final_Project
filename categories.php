@@ -36,6 +36,8 @@ if (!empty($_POST["chosen_category"])) {
     $sql = "SELECT * FROM ITEM WHERE CATEGORY = '" . $_POST["chosen_category"] . "'";
     $result = $conn->query($sql);
 
+    // TODO: be able to add items to cart shown in menu (not sure if this needs handled differently than the regular menu)
+
     if ($result->num_rows > 0) {
         echo "<table border='1px solid black'><tr><th>Item Number</th><th>Description</th><th>On Hand</th><th>Category</th><th>Price</th></tr>";
         // output data of each row
