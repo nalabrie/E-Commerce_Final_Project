@@ -27,9 +27,6 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
         if ($_POST['username'] == 'admin' && $_POST['password'] == '1234') {
             // sign-in successful
 
-            // when true, the user is signed in TODO: remove if it goes unused
-            $_SESSION['valid'] = true;
-
             // store the signed-in person's username in the session
             $_SESSION['username'] = $_POST['username'];
         }
