@@ -86,8 +86,8 @@ if (!empty($_POST)) {
     }
 
     // sql query to check if user exists in database
-    $sql = "SELECT CUSTOMER_NUM FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['name']))
-        . "' AND UPPER(STREET) = '" . trim(strtoupper($_POST['street'])) . "'";
+    $sql = "SELECT CUSTOMER_NUM FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['username']))
+        . "' AND UPPER(STREET) = '" . trim(strtoupper($_POST['password'])) . "'";
 
     $result = $conn->query($sql);
 
