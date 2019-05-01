@@ -30,7 +30,7 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
             // when true, the user is signed in TODO: remove if it goes unused
             $_SESSION['valid'] = true;
 
-            // store the signed-in person's username in the session TODO: untested, stopped here for lunch
+            // store the signed-in person's username in the session
             $_SESSION['username'] = $_POST['username'];
         }
         else {
@@ -47,7 +47,8 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
 
     // do not show if not signed in as anybody
     if (isset($_SESSION['username'])) {
-        echo "You are currently signed in as <font color='red'>" . trim($_SESSION['username']) . "</font>. Not you? <a href='logout.php'>Sign out</a>.";
+        echo "You are currently signed in as <span style=\"color: red; \">" . trim($_SESSION['username']) .
+            "</span>. Not you? <a href='logout.php'>Sign out</a>.";
     }
 
     ?>
