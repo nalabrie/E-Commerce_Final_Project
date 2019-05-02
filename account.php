@@ -19,21 +19,43 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
 
 <div>
     <?php
-    /* this chunk of php code signs the user in after they enter their credentials and submit the form */
+    /* This chunk of php code logs in the user after they submit the login form. It connects to the database
+     * to compare the form data to existing customers.
+     */
 
-    // check that the user has entered a username and password
+    // only run if the form is completed and submitted
     if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
-        // check that account info is valid TODO: hook this up to the database
-        if ($_POST['username'] == 'admin' && $_POST['password'] == '1234') {
-            // sign-in successful
 
-            // store the signed-in person's username in the session
+        // form submitted, connect to database
+        $servername = "localhost";
+        $username = "nalabrie_nalabrie";
+        $password = "cheese_admin";
+        $dbname = "nalabrie_cheeseburger_hut";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // sql query to check if username and password exists in database
+        $sql = "SELECT CUSTOMER_NUM FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['username']))
+            . "' AND UPPER(STREET) = '" . trim(strtoupper($_POST['password'])) . "'";
+
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // sign in successful, store in session
             $_SESSION['username'] = $_POST['username'];
         }
         else {
-            // sign-in failed, show warning
+            // sign in failed, show warning
             echo 'Wrong username or password, please try again.';
         }
+
+        // database unneeded for remainder of file, close connection
+        $conn->close();
     }
     ?>
 </div>
@@ -73,34 +95,5 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
 
 Click <a href="logout.php">here</a> to log out.
 
-<?php
-if (!empty($_POST)) {
-    $servername = "localhost";
-    $username = "nalabrie_nalabrie";
-    $password = "cheese_admin";
-    $dbname = "nalabrie_cheeseburger_hut";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // sql query to check if user exists in database
-    $sql = "SELECT CUSTOMER_NUM FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['username']))
-        . "' AND UPPER(STREET) = '" . trim(strtoupper($_POST['password'])) . "'";
-
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        echo "Sign-in successful!";
-    }
-    else {
-        echo "Account does not exist.";
-    }
-    $conn->close();
-}
-?>
 </body>
 </html>
