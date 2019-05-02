@@ -5,38 +5,63 @@
     <title>Menu - Final Project - Nicky Labrie</title>
 </head>
 <body>
-<?php include("./navbar.inc");
-$servername = "localhost";
-$username = "nalabrie_nalabrie";
-$password = "cheese_admin";
-$dbname = "nalabrie_cheeseburger_hut";
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <?php include("./navbar.inc");
+    $servername = "localhost";
+    $username = "nalabrie_nalabrie";
+    $password = "cheese_admin";
+    $dbname = "nalabrie_cheeseburger_hut";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM ITEM";
-$result = $conn->query($sql);
-
-// TODO: be able to add items to cart shown in menu
-
-if ($result->num_rows > 0) {
-    echo "<table border='1px solid black'><tr><th>Item Number</th><th>Description</th><th>On Hand</th><th>Category</th><th>Price</th></tr>";
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["ITEM_NUM"] . "</td><td>" . $row["DESCRIPTION"] . "</td><td>" . $row["ON_HAND"] . "</td><td>" . $row["CATEGORY"] . "</td><td>" . $row["PRICE"] . "</td></tr>";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    echo "</table>$result->num_rows results";
-}
-else {
-    echo "0 results";
-}
-$conn->close();
-?>
+
+    $sql = "SELECT * FROM ITEM";
+    $result = $conn->query($sql);
+
+    // TODO: be able to add items to cart shown in menu
+
+    // only generate table when there is at least one thing to show in it
+    if ($result->num_rows > 0) {
+        // next two lines are needed to store session information when adding items to the cart
+        ob_start();
+        session_start();
+
+        // create array of html checkboxes to hold cart data
+        $addToCart = array();
+
+        // title row of table
+        echo "<table border='1px solid black'><tr><th>Item Number</th><th>Description</th><th>On Hand</th><th>Category</th><th>Price</th><th>Add to cart?</th></tr>";
+        // output data of each row along with a way to add an item to the cart
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["ITEM_NUM"] . "</td><td>" . $row["DESCRIPTION"] . "</td><td>" . $row["ON_HAND"] . "</td><td>" . $row["CATEGORY"] . "</td><td>" . $row["PRICE"] . "</td> . <td><input type=\"checkbox\" name=\"addToCart[]\" value=\"" . $row['ITEM_NUM'] . "\"/></td></tr>";
+        }
+        echo "</table>$result->num_rows results";   // show number of rows in table
+    }
+    else {
+        echo "0 results";
+    }
+    $conn->close();
+    ?>
+    <button type="submit" name="addButton">Add checked items to cart</button>
+</form>
 <br><br>
 Edit the menu <a href="modify_menu.php">here</a>.
+
+
+<br><br>
+<br><br>
+!!DEBUG!!
+<br><br>
+<?php
+if (isset($_POST['addToCart'])) {
+    var_dump($_POST['addToCart']);
+}
+?>
+
+
 </body>
 </html>
