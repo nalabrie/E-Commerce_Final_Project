@@ -7,6 +7,10 @@
 <body>
 <?php include("./navbar.inc") ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+    <u>Note</u>: items cannot be added to the cart from this page. Visit the <a href="menu.php">full menu</a> when you
+    are ready to order.
+    <br><br>
     Pick a menu category from the drop down list:<br>
     <label>
         <select name="chosen_category">
@@ -35,8 +39,6 @@ if (!empty($_POST["chosen_category"])) {
 
     $sql = "SELECT * FROM ITEM WHERE CATEGORY = '" . $_POST["chosen_category"] . "'";
     $result = $conn->query($sql);
-
-    // TODO: be able to add items to cart shown in menu (not sure if this needs handled differently than the regular menu)
 
     if ($result->num_rows > 0) {
         echo "<table border='1px solid black'><tr><th>Item Number</th><th>Description</th><th>On Hand</th><th>Category</th><th>Price</th></tr>";

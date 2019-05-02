@@ -6,8 +6,19 @@
 </head>
 <body>
 <?php include("./navbar.inc") ?>
-There is nothing to be displayed here until the menu and sign-in is fully functional.
+
+
+
 <!-- TODO: this entire feature -->
-<!-- TODO: remember that the cart is checkboxes holding ITEM_NUM but should be displayed to the user ONLY IF box is checked AND show DESCRIPTION rather than a number and a quantity adjuster is needed -->
+
+
+
+<!--
+TODO: NOTES BELOW THIS LINE
+
+1. the cart is checkboxes holding ITEM_NUM but should be displayed to the user ONLY IF box is checked AND show DESCRIPTION rather than a number
+2. quantity adjuster
+3. only function when signed in!
+//-->
 </body>
 </html>

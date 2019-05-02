@@ -5,6 +5,7 @@
     <title>Menu - Final Project - Nicky Labrie</title>
 </head>
 <body>
+<!-- submitting this form adds all the selected items to the cart -->
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <?php include("./navbar.inc");
     $servername = "localhost";
@@ -22,16 +23,11 @@
     $sql = "SELECT * FROM ITEM";
     $result = $conn->query($sql);
 
-    // TODO: be able to add items to cart shown in menu
-
     // only generate table when there is at least one thing to show in it
     if ($result->num_rows > 0) {
         // next two lines are needed to store session information when adding items to the cart
         ob_start();
         session_start();
-
-        // create array of html checkboxes to hold cart data
-        $addToCart = array();
 
         // title row of table
         echo "<table border='1px solid black'><tr><th>Item Number</th><th>Description</th><th>On Hand</th><th>Category</th><th>Price</th><th>Add to cart?</th></tr>";
@@ -46,22 +42,27 @@
     }
     $conn->close();
     ?>
-    <button type="submit" name="addButton">Add checked items to cart</button>
+    <br><br>
+    <button type="submit">Add checked items to cart</button>
+    <u>Note</u>: item quantities can be adjusted before checkout.
 </form>
-<br><br>
+
+<br>
 Edit the menu <a href="modify_menu.php">here</a>.
+<br><br>
 
-
-<br><br>
-<br><br>
-!!DEBUG!!
-<br><br>
 <?php
+
+/* this php block adds the items to the cart by storing them in a session-wide array and informing the user of successes and errors */
+
+// only run code if form has been submitted
 if (isset($_POST['addToCart'])) {
-    var_dump($_POST['addToCart']);
+    // store cart in session
+    $_SESSION['cartArray'] = $_POST['addToCart'];
+
+    // notify user of success
+    echo count($_POST['addToCart']) . " items were added to the cart. Ready to check out? <a href='cart.php'>Go to cart</a>.";
 }
 ?>
-
-
 </body>
 </html>
