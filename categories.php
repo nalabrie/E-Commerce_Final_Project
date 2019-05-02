@@ -7,6 +7,10 @@
 <body>
 <?php include("./navbar.inc") ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+    <u>Note</u>: items cannot be added to the cart from this page. Visit the <a href="menu.php">full menu</a> when you
+    are ready to order.
+    <br><br>
     Pick a menu category from the drop down list:<br>
     <label>
         <select name="chosen_category">
