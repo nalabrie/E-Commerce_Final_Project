@@ -40,14 +40,14 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
         }
 
         // sql query to check if username and password exists in database
-        $sql = "SELECT CUSTOMER_NUM FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['username']))
+        $sql = "SELECT CUSTOMER_NAME FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['username']))
             . "' AND UPPER(STREET) = '" . trim(strtoupper($_POST['password'])) . "'";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // sign in successful, store in session
-            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['username'] = $result->fetch_assoc()['CUSTOMER_NAME'];
         }
         else {
             // sign in failed, show warning
