@@ -5,9 +5,19 @@
     <title>Menu - Final Project - Nicky Labrie</title>
 </head>
 <body>
+
+<?php
+// next two lines are needed to store session information when adding items to the cart
+ob_start();
+session_start();
+
+include("./navbar.inc");
+?>
+
+
 <!-- submitting this form adds all the selected items to the cart -->
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <?php include("./navbar.inc");
+    <?php
     $servername = "localhost";
     $username = "nalabrie_nalabrie";
     $password = "cheese_admin";
@@ -25,10 +35,6 @@
 
     // only generate table when there is at least one thing to show in it
     if ($result->num_rows > 0) {
-        // next two lines are needed to store session information when adding items to the cart
-        ob_start();
-        session_start();
-
         // title row of table
         echo "<table border='1px solid black'><tr><th>Item Number</th><th>Description</th><th>On Hand</th><th>Category</th><th>Price</th><th>Add to cart?</th></tr>";
         // output data of each row along with a way to add an item to the cart
@@ -44,7 +50,6 @@
     ?>
     <br><br>
     <button type="submit">Add checked items to cart</button>
-    <u>Note</u>: item quantities can be adjusted before checkout.
 </form>
 
 <br>
