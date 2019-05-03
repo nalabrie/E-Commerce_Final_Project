@@ -14,8 +14,11 @@ session_start();
 <?php include("./navbar.inc"); ?>
 
 <br>
-
+<!-- entire php needs to be surrounded in html form -->
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php
+/* this block of php code shows the cart as a table with submit and clear buttons */
+
 // can not use cart if user is not signed in
 if (!isset($_SESSION['username'])) {
     echo "Orders can't be placed unless you are signed in. Either <a href='create_account.php'>create an account</a> or <a href='account.php'>sign in</a>.";
@@ -71,7 +74,7 @@ else {
         for ($i = 0; $i < count($description); $i++) {
             echo "<tr><td>" . $description[$i] . "</td><td>" . $price[$i] . "</td></tr>";
         }
-        echo "</table>$result->num_rows items in cart<br><br>";   // show number of rows in table
+        echo "</table>" . count($description) . " item(s) in cart<br><br>";   // show number of rows in table
 
         // sum up items in cart
         $sum = 0;
@@ -80,18 +83,27 @@ else {
         }
 
         // cart total
-        echo "Total: $" . number_format($sum, 2);
+        echo "Total: $" . number_format($sum, 2) . "<br>";
+        echo "<button type='submit' name='emptyCartButton'>Empty Cart</button><button type='submit' name='submitOrderButton'>Submit Order</button>";
     }
 }
 ?>
+</form>
 
+<?php
+/* this block of php code handles what happens when the cart is cleared */
+if (isset($_POST['emptyCartButton'])) {
+    unset($_SESSION['cartArray']);
+    header("Refresh:0");    // clears table
+}
+?>
 
-<!--
-TODO: NOTES BELOW THIS LINE
-
-1. the cart is checkboxes holding ITEM_NUM but should be displayed to the user ONLY IF box is checked AND show DESCRIPTION rather than a number
-2. empty cart button
-3. entire thing needs to be in form to submit it
-//-->
+<?php
+/* this block of php code handles what happens when the order is submitted */
+if (isset($_POST['submitOrderButton'])) {
+    // show order confirmation page (that file also handles putting order record into database)
+    header("Refresh:0; url=order_submitted.php");
+}
+?>
 </body>
 </html>
