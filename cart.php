@@ -25,7 +25,7 @@ if (!isset($_SESSION['username'])) {
 }
 else {
     // user is signed in, check if cart is empty
-    if (isset($_SESSION['cartArray']) && count($_SESSION['cartArray']) == 0) {
+    if (!isset($_SESSION['cartArray']) || count($_SESSION['cartArray']) == 0) {
         // cart is empty, do not show table
         echo "Cart is empty! Add items to order at the <a href='menu.php'>menu</a> page.";
     }
