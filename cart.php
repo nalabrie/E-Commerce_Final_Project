@@ -5,12 +5,24 @@
     <title>Cart - Final Project - Nicky Labrie</title>
 </head>
 <body>
-<?php include("./navbar.inc") ?>
+<?php include("./navbar.inc");
 
-
-
-<!-- TODO: this entire feature -->
-
+// can not use cart if user is not signed in
+if (!isset($_SESSION['username'])) {
+    echo "Orders can't be placed unless you are signed in. Either <a href='create_account.php'>create an account</a> or <a href='account.php'>sign in</a>.";
+}
+else {
+    // user is signed in, check if cart is empty
+    if (!isset($_SESSION['cartArray']) || count($_SESSION['cartArray']) == 0) {
+        // cart is empty, do not show table
+        echo "Cart is empty! Add items to order at the <a href='menu.php'>menu</a> page.";
+    }
+    else {
+        // cart has items, show table
+        echo "table goes here";
+    }
+}
+?>
 
 
 <!--
