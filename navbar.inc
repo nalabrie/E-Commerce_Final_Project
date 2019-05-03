@@ -1,3 +1,9 @@
+<?php
+// these two lines are needed to keep the user logged in throughout the site (needs to be here too so the php below works)
+ob_start();
+session_start();
+?>
+
 <!DOCTYPE html>
 <!-- including this file will show a navigation bar across the top of the page to get around the site -->
 <html lang="en">
@@ -23,11 +29,6 @@
     </style>
 </head>
 <body>
-<?php
-// these two lines are needed to keep the user logged in throughout the site (needs to be here too so the php below works)
-ob_start();
-session_start();
-?>
 <ul>
     <li><a href="./index.php">Home</a></li>
     <li><a href="./menu.php">Menu</a></li>
