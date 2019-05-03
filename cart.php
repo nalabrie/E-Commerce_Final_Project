@@ -21,20 +21,6 @@ if (!isset($_SESSION['username'])) {
     echo "Orders can't be placed unless you are signed in. Either <a href='create_account.php'>create an account</a> or <a href='account.php'>sign in</a>.";
 }
 else {
-    var_dump($_SESSION['cartArray']);
-
-    // TODO: items aren't adding to on this page, probably another session issue
-
-
-
-
-
-
-
-
-
-
-
 //    // user is signed in, check if cart is empty
 //    if (isset($_SESSION['cartArray']) || count($_SESSION['cartArray']) === 0) {
 //        // cart is empty, do not show table
@@ -52,6 +38,7 @@ else {
 TODO: NOTES BELOW THIS LINE
 
 1. the cart is checkboxes holding ITEM_NUM but should be displayed to the user ONLY IF box is checked AND show DESCRIPTION rather than a number
+2. empty cart button
 //-->
 </body>
 </html>

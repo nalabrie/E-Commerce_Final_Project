@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Menu - Final Project - Nicky Labrie</title>
-</head>
-<body>
-
 <?php
 // next two lines are needed to store session information when adding items to the cart
 ob_start();
@@ -14,6 +6,13 @@ session_start();
 include("./navbar.inc");
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu - Final Project - Nicky Labrie</title>
+</head>
+<body>
 
 <!-- submitting this form adds all the selected items to the cart -->
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
