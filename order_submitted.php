@@ -38,6 +38,9 @@ if ($conn->query($sql) === FALSE) {
     die();
 }
 
+// store order date
+$orderDate = date("l n/j/Y g:i A");
+
 // get name of delivery driver (always driver number 1 in this case since this is a fictional system)
 $sql = "SELECT FIRST_NAME, LAST_NAME FROM DRIVER WHERE DRIVER_NUM = '1'";
 $result = $conn->query($sql);
@@ -61,7 +64,7 @@ Sate: <?php echo $_SESSION['state'] ?>
 Postal Code: <?php echo $_SESSION['postal'] ?>
 <br>
 <br>
-Order Date: <?php echo date("l n/j/Y i:g A") ?>
+Order Date: <?php echo $orderDate ?> &nbsp;&nbsp;&nbsp;&nbsp;<b>Note to Dr. A</b>: this date will always be wrong because the server time at YSU is not correctly set.
 <br>
 <br>
 Your order will be delivered shortly by your driver <span style="color: red;"><?php echo $driverName ?></span>.
