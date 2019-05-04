@@ -40,7 +40,7 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
         }
 
         // sql query to check if username and password exists in database
-        $sql = "SELECT CUSTOMER_NAME FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['username']))
+        $sql = "SELECT * FROM CUSTOMER WHERE UPPER(CUSTOMER_NAME) = '" . trim(strtoupper($_POST['username']))
             . "' AND UPPER(STREET) = '" . trim(strtoupper($_POST['password'])) . "'";
 
         $result = $conn->query($sql);

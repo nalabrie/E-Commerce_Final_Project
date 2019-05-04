@@ -14,7 +14,7 @@ session_start();
 <h3><a href="index.php">Return to homepage</a></h3> <!-- one of two ways back to the main site -->
 
 <?php
-/* this php block places the order and gathers required information about the order */
+/* this php block places the order */
 
 // connect to database
 $servername = "localhost";
@@ -38,21 +38,33 @@ if ($conn->query($sql) === FALSE) {
     die();
 }
 
-// sql query to get relevant order information
-$sql = "SELECT * FROM ITEM";
-
+// get name of delivery driver (always driver number 1 in this case since this is a fictional system)
+$sql = "SELECT FIRST_NAME, LAST_NAME FROM DRIVER WHERE DRIVER_NUM = '1'";
 $result = $conn->query($sql);
-
-// store sql results in variables
-if ($result->num_rows > 0) {
-}
+$driverData = $result->fetch_assoc();
+$driverName = $driverData['FIRST_NAME'] . " " . $driverData['LAST_NAME'];
 
 // database unneeded for remainder of file, close connection
 $conn->close();
 ?>
 
 <h1>Order Summary</h1>
-
+Name: <?php echo $_SESSION['username'] ?>
+<br>
+<br>
+Street Address: <?php echo $_SESSION['street'] ?>
+<br>
+City: <?php echo $_SESSION['city'] ?>
+<br>
+Sate: <?php echo $_SESSION['state'] ?>
+<br>
+Postal Code: <?php echo $_SESSION['postal'] ?>
+<br>
+<br>
+Order Date: <?php echo date("l n/j/Y i:g A") ?>
+<br>
+<br>
+Your order will be delivered shortly by your driver <span style="color: red;"><?php echo $driverName ?></span>.
 
 <h3><a href="index.php">Return to homepage</a></h3> <!-- one of two ways back to the main site -->
 </body>

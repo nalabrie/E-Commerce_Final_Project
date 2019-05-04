@@ -82,6 +82,11 @@ else {
             $sum += $value;
         }
 
+        // save order in session variables
+        $_SESSION['cartTotal'] = $sum;
+        $_SESSION['description'] = $description;
+        $_SESSION['price'] = $price;
+
         // cart total
         echo "Total: $" . number_format($sum, 2) . "<br>";
         echo "<button type='submit' name='emptyCartButton'>Empty Cart</button><button type='submit' name='submitOrderButton'>Submit Order</button>";
