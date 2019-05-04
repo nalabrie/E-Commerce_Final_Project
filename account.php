@@ -47,7 +47,13 @@ Delete accounts <a href="./delete_account.php">here</a>.<br><br>
 
         if ($result->num_rows > 0) {
             // sign in successful, store in session
-            $_SESSION['username'] = $result->fetch_assoc()['CUSTOMER_NAME'];
+            $user = $result->fetch_assoc();
+            $_SESSION['username'] = $user['CUSTOMER_NAME'];
+            $_SESSION['street'] = $user['STREET'];
+            $_SESSION['city'] = $user['CITY'];
+            $_SESSION['state'] = $user['STATE'];
+            $_SESSION['postal'] = $user['POSTAL_CODE'];
+            $_SESSION['user_num'] = $user['CUSTOMER_NUM'];
         }
         else {
             // sign in failed, show warning

@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 }
 
 // sql query to insert order into database
-$sql = "";
+$sql = "INSERT INTO ORDERS(ORDER_DATE, CUSTOMER_NUM, DRIVER_NUM) VALUES(NOW(), '" . $_SESSION['user_num'] . "', '1')";
 
 // check if order placed successfully
 if ($conn->query($sql) === FALSE) {
